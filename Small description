@@ -1,0 +1,15 @@
+Liran Meirovich 205841356
+Ron Towers 318958105
+
+
+the project runs by splitting the strings to 2, one half runs by cuda and the other in MPI+OMP. we think its fair, as its 2 different devices working on it (GPU and CPU)
+
+
+the project runtime when compared to the sequential is about ~10x faster, with the following limitations:
+
+the cuda initiation itself takes around 0.1~ seconds. that alone makes the project run slower than the sequential, 
+except when the string count is in the tens of thousands.
+
+this doesn't include the time it takes the MPI to send the input to its processes, because that too, alone, takes >0.01 seconds, which again makes it only good with 1k+ strings.
+
+
